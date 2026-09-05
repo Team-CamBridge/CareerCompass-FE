@@ -48,6 +48,10 @@
 
 `play-uploader` 는 만들어 뒀지만 Play Console 에서 그 계정을 앱에 연결해야 실제로 업로드할 수 있다. 그 연결은 계정 등록 이슈가 맡는다.
 
+## App Distribution
+
+테스터 그룹 `careercompass`(표시 이름 CareerCompass QA)를 2026-09-06 에 만들었다. Gradle 설정이 이 별칭을 가리킨다. 지금 이 그룹에는 아무도 없다. 프로젝트 테스터로는 `dnfjddk2@gmail.com` 하나가 등록돼 있고, 그룹에 넣는 것은 콘솔에서 한다.
+
 ## 환경
 
 | 환경 | 상태 |
