@@ -17,9 +17,21 @@
 | `GCP_WORKLOAD_IDENTITY_PROVIDER` | GitHub Actions 가 GCP 로 인증하는 제공자 | 있음 |
 | `GCP_FIREBASE_SERVICE_ACCOUNT` | App Distribution 업로드용 서비스 계정 | 있음 |
 | `GCP_PLAY_SERVICE_ACCOUNT` | Play 업로드용 서비스 계정 | 있음 |
-| `KAKAO_NATIVE_APP_KEY` | 카카오 네이티브 앱 키 | 없음 |
+| `KAKAO_NATIVE_APP_KEY` | 카카오 네이티브 앱 키 | 있음 |
 
 이름의 `_B64` 접미사에 주의한다. `_B` 로 넣으면 워크플로가 빈 값을 읽고, 그 빈 값으로 만든 APK 는 서명이 없거나 설정이 비어 있다.
+
+## 카카오
+
+| 항목 | 값 |
+|---|---|
+| 앱 이름 | CareerCompass (앱 ID 1568218) |
+| 등록한 패키지명 | `com.cambridge.careercompass_fe` |
+| 등록한 키 해시 | release 키, 그리고 이 저장소를 처음 세팅한 기기의 debug 키 |
+| 카카오 로그인 | 사용 설정됨 |
+| 동의항목 | 닉네임 필수 동의. 나머지는 사용 안 함 |
+
+이메일을 필수 동의로 받으려면 비즈 앱 전환이 필요하고, 그건 사업자 정보나 본인인증을 요구한다. 지금은 닉네임만 받는다. 새 기기에서 debug 빌드로 카카오 로그인을 시험하려면 그 기기의 debug 키 해시를 콘솔에 더 등록해야 한다.
 
 ## Firebase 프로젝트
 
@@ -71,4 +83,6 @@ Play App Signing 에 등록하면 이 키는 업로드 키가 되고, 잃어버�
 
 `local.properties` 에 서명 네 키(`RELEASE_STORE_FILE`·`RELEASE_STORE_PASSWORD`·`RELEASE_KEY_ALIAS`·`RELEASE_KEY_PASSWORD`)를 넣는다. 네 키는 하나의 단위라 모두 채우거나 모두 지운다. release 빌드에는 `KAKAO_NATIVE_APP_KEY` 와 `GOOGLE_WEB_CLIENT_ID` 도 필요하고, 둘 중 하나라도 비면 빌드가 스스로 멈춘다. 빈 키로 만든 release APK 는 소셜 로그인이 동작하지 않기 때문이다.
 
-2026-09-06 기준 실측이다. debug 빌드는 실제 Firebase 설정으로 통과한다. release 빌드는 두 소셜 키에 임시 값을 넣었을 때 R8 축소와 리소스 축소를 거쳐 4.8MB APK 가 나왔고 `apksigner verify` 가 v2 서명과 인증서 지문을 확인했다. 그 APK 는 임시 값으로 만든 것이라 그 자리에서 지웠다. 지금은 카카오 키 하나가 없어 release 빌드가 그 게이트에서 멈춘다.
+2026-09-06 기준 실측이다. 자격을 다 채운 뒤 release 빌드가 통과한다. R8 축소와 리소스 축소를 거쳐 4.8MB APK 가 나왔고, `apksigner verify` 가 v2 서명과 인증서 지문을 확인했으며, 매니페스트에 실제 카카오 OAuth 스킴(`kakao<네이티브키>`)이 실렸다. 그 APK 를 App Distribution 에 올려 테스터 그룹까지 배포되는 것도 확인했다.
+
+다만 그 업로드는 이 기기의 firebase CLI 자격으로 한 것이다. GitHub Actions 의 워크로드 아이덴티티 경로는 아직 실행해 보지 못했다. 확인용 카나리 워크플로가 GitHub 에 등록되지 않아 실행할 수 없기 때문이고, 그 문제는 별도로 추적한다.
