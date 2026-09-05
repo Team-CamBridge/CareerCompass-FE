@@ -2,11 +2,26 @@
 
 디자이너·PM·QA·외부 베타테스터에게 release APK 를 자동 배포하는 흐름. Firebase 프로젝트 `careercompass-android` + 테스터 그룹 `careercompass` 사용.
 
+자격이 지금 어디까지 채워져 있는지는 [`credentials.md`](credentials.md) 가 표로 관리한다.
+
 ## 운영 자격 인계 (로컬 fallback 담당자만)
 
 일반 배포는 GitHub Actions가 담당하므로 모든 개발자가 이 설정을 가질 필요는 없다. CI 장애 때 로컬 fallback을 수행할 **배포 권한 보유자**만 다음을 준비한다.
 
-1. **기존 release keystore와 자격 값 인계** — 승인된 보안 저장소에서 기존 서명 파일과 네 값을 받는다. 새 keystore를 임의로 생성하거나 교체하지 않는다. 기존 앱과 다른 키로 서명하면 업데이트할 수 없으므로, 자격을 찾지 못하면 배포를 중단하고 복구·공식 키 교체 절차를 먼저 진행한다.
+1. **release keystore 인계.** 2026-09-06 에 이 프로젝트의 서명 키를 만들었다. 파일과 비밀번호는 1Password 개인 볼트에 있다(문서 `CareerCompass release keystore (jks)`, 항목 `CareerCompass release signing`). 인계받아 로컬에 두고 쓴다.
+
+    **새로 만들지 않는다.** 다른 키로 서명한 앱은 기존 설치본을 업데이트할 수 없다. 자격을 찾지 못하면 배포를 멈추고 인계부터 받는다. (이 문서의 예전 판은 「기존 keystore 를 인계받으라」고만 적었는데, 그때 이 프로젝트에는 keystore 가 없었다. 다른 저장소에서 이식되며 따라온 문장이었다.)
+
+    | 항목 | 값 |
+    |---|---|
+    | alias | `careercompass-release` |
+    | 알고리즘 | RSA 4096, SHA384withRSA |
+    | 유효기간 | 10,000일 (2026-09-06 발급) |
+    | SHA-1 | `5A:DE:33:50:B2:F9:01:BA:68:9E:33:31:FB:66:64:1C:D8:9F:BE:01` |
+    | SHA-256 | `51:08:56:1C:29:46:2D:91:A3:2F:23:9E:B4:19:BA:8F:2D:64:6B:9C:9A:7E:6A:36:BE:7A:BB:33:F1:36:13:01` |
+    | 카카오 키 해시 | `Wt4zULL5AbponjMx+2ZkHNifvgE=` |
+
+    지문은 비밀이 아니다. 카카오 개발자 콘솔의 키 해시와 Google OAuth 클라이언트에 이 값을 등록해야 release 빌드에서 소셜 로그인이 된다.
 
 2. **`local.properties` 끝에 4개 키 추가** (signing config 가 읽음)
 
