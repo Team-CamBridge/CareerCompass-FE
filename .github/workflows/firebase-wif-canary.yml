@@ -1,14 +1,14 @@
 name: Firebase WIF Canary
 
-# 기존 release-distribution의 JSON credential 경로는 실제 WIF canary가 성공할 때까지 유지한다.
-# 이 workflow는 production 전환과 분리된 수동 검증 경로이며 Firebase 업로드를 실제 수행한다.
+# 이 workflow 는 릴리스 경로와 분리된 수동 검증용이고 Firebase 업로드를 실제로 수행한다.
+# 자격은 2026-09-06 에 전부 채웠다(시크릿 열 개, play-internal 환경, 서비스 계정 둘) — docs/release/credentials.md.
 on:
   workflow_dispatch:
     inputs:
       issue_numbers:
-        description: "포함 이슈 번호 (#850 형식)"
+        description: "포함 이슈 번호 (#309 형식)"
         required: true
-        default: "#850"
+        default: "#309"
         type: string
       qa_points:
         description: "WIF canary QA 포인트"
@@ -22,7 +22,7 @@ on:
         type: boolean
 
 # release-distribution.yml 과 같은 group — 업로드 대상 Firebase 앱이 하나다. 한쪽만 바꾸면
-# 두 러너가 같은 앱에 동시 업로드한다 (#995).
+# 두 러너가 같은 앱에 동시 업로드한다.
 concurrency:
   group: firebase-app-distribution-upload
   cancel-in-progress: false
