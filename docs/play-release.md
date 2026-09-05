@@ -40,6 +40,8 @@ Firebase App Distribution 경로([`release-distribution.yml`](../.github/workflo
 - 같은 versionCode 재업로드는 bundle 목록 대조로 업로드 전에 막고, Play가 돌려준 versionCode가 빌드한 값과 다르면 트랙을 건드리지 않는다.
 - `app/build.gradle.kts`의 versionCode를 손으로 올리지 않는다. 로컬에서 Play용 값이 필요하면 `CAREERCOMPASS_VERSION_CODE` 환경변수로 주입한다.
 
+자격 현황표는 [`release/credentials.md`](release/credentials.md) 에 있다. 무엇이 남았는지는 그 표를 먼저 본다.
+
 ### 자동화 사전 준비
 
 워크플로가 참조하는 설정은 전부 사람이 웹 UI에서 만들어야 한다. 하나라도 비어 있으면 첫 스텝이 누락된 이름을 출력하고 빌드 전에 실패한다.
