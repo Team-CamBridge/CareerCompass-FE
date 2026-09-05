@@ -47,7 +47,7 @@ BE 와 AI 는 [CareerCompass-BE](https://github.com/Team-CareerCompass/CareerCom
 | 8월 | 80% | 미달 | 실서버 통합 테스트를 한 적이 없다. FE 내부 검증(단위·스크린샷·계약 스모크)만 돈다 |
 | 9월 | 85% | 부분 | 리팩터링(MVI 전환, Navigation 3 이관)과 앱 보안 점검([#264](https://github.com/Team-CareerCompass/CareerCompass-FE/issues/264))은 했다. API 응답 속도는 서버 몫이라 FE 에서 잴 것이 없다 |
 | 10월 | 90% | 미착수 | |
-| 11월 | 95% | 일부 | 스토어 자산과 등록 문안은 만들었다([#263](https://github.com/Team-CareerCompass/CareerCompass-FE/issues/263)). 인프라 배포는 서버 몫이고, 스크린샷·방침 게시·Play Console 등록은 [#274](https://github.com/Team-CareerCompass/CareerCompass-FE/issues/274) 가 남았다 |
+| 11월 | 95% | 일부 | 스토어 자산과 등록 문안을 만들었고([#263](https://github.com/Team-CareerCompass/CareerCompass-FE/issues/263)), 앱 배포 자격도 세웠다. 서명 키와 Firebase·구글·GCP 자격이 들어가 시크릿 열 중 아홉이 찼다([#302](https://github.com/Team-CareerCompass/CareerCompass-FE/issues/302)·[#303](https://github.com/Team-CareerCompass/CareerCompass-FE/issues/303)). 서버 인프라 배포는 서버 몫이고, 카카오 키([#305](https://github.com/Team-CareerCompass/CareerCompass-FE/issues/305))와 Play Console 등록([#292](https://github.com/Team-CareerCompass/CareerCompass-FE/issues/292))이 남았다 |
 | 12월 | 100% | 미착수 | |
 
 저장소별 숫자로 보면 이렇다.

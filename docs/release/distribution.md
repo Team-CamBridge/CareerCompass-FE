@@ -1,6 +1,8 @@
 # 비개발자 APK 배포 (Firebase App Distribution)
 
-디자이너·PM·QA·외부 베타테스터에게 release APK 를 자동 배포하는 흐름. Firebase 프로젝트 `careercompass-android` + 테스터 그룹 `careercompass` 사용.
+디자이너·PM·QA·외부 베타테스터에게 release APK 를 자동 배포하는 흐름. Firebase 프로젝트 `careercompass-fe` 의 테스터 그룹 `careercompass`(표시 이름 CareerCompass QA)로 나간다. 그룹 별칭은 `app/build.gradle.kts` 의 `firebaseAppDistribution { groups = ... }` 와 같은 값이어야 한다.
+
+테스터를 넣으려면 `firebase appdistribution:testers:add <이메일> --project careercompass-fe` 로 프로젝트에 넣고 콘솔에서 그룹에 넣는다. 그룹에 아무도 없으면 업로드는 성공해도 아무에게도 도착하지 않는다.
 
 자격이 지금 어디까지 채워져 있는지는 [`credentials.md`](credentials.md) 가 표로 관리한다.
 
